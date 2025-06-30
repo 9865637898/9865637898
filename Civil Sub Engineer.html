@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The ATC Future Builder - Attariya Technical College</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+    /* ========================================
+    GLOBAL STYLES & DESIGN SYSTEM
+    ========================================
+    */
+    :root {
+        --primary-dark-bg: #1a202c;
+        --secondary-dark-bg: #2d3748;
+        --text-primary: #edf2f7;
+        --text-secondary: #a0aec0;
+        --accent-red: #E53E3E; /* Changed from accent-cyan to accent-red */
+        --accent-magenta: #ff00e5;
+        --accent-yellow: #f6e05e;
+        --accent-green: #48bb78;
+        --shadow-light: 0 4px 15px rgba(229, 62, 62, 0.07); /* Adjusted shadow for red accent */
+        --shadow-strong: 0 8px 25px rgba(229, 62, 62, 0.15); /* Adjusted shadow for red accent */
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+        background-color: var(--primary-dark-bg);
+        color: var(--text-primary);
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 5rem 1.5rem;
+    }
+
+    /* Typography & Bilingual Text Styling */
+    .text-en {
+        display: block;
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.3;
+    }
+
+    .text-np {
+        display: block;
+        font-family: 'Noto Sans Devanagari', sans-serif;
+        font-size: 0.9em;
+        color: var(--text-secondary);
+        font-weight: 400;
+        line-height: 1.6;
+        margin-top: 4px;
+    }
+
+    h1 .text-en { font-size: 3.5rem; font-weight: 800; }
+    h1 .text-np { font-size: 2.5rem; font-weight: 700; }
+    h2 .text-en { font-size: 2.8rem; font-weight: 700; }
+    h2 .text-np { font-size: 2rem; }
+    h3 .text-en { font-size: 1.5rem; font-weight: 600; }
+    h3 .text-np { font-size: 1.2rem; }
+
+    .section-title { text-align: center; margin-bottom: 1rem; }
+    .section-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        max-width: 650px;
+        margin: 0 auto 3.5rem auto;
+        color: var(--text-secondary);
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        box-shadow: var(--shadow-light);
+    }
+
+    .btn-primary {
+        /* Changed gradient to incorporate red */
+        background-image: linear-gradient(45deg, var(--accent-red), var(--accent-magenta));
+        color: var(--primary-dark-bg);
+    }
+    .btn-primary:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-strong);
+    }
+    /* Added hover effect for the call button */
+    .btn:not(.btn-primary) {
+        background-color: var(--secondary-dark-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--text-secondary);
+    }
+    .btn:not(.btn-primary):hover {
+        background-color: var(--text-primary);
+        color: var(--secondary-dark-bg);
+        border-color: var(--accent-red);
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-strong);
+    }
+
+    /* Scroll Animations */
+    .fade-in {
+        opacity: 0;
+        transition: opacity 1s ease-out;
+    }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ========================================
+    SCREEN 1: WELCOME / HERO SECTION
+    ========================================
+    */
+    #screen1-welcome {
+        min-height: 100vh;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        /* Changed background image to represent Nepal buildings */
+        background-image: linear-gradient(rgba(26, 32, 44, 0.85), rgba(26, 32, 44, 0.85)), url(https://images.pexels.com/photos/10364951/pexels-photo-10364951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); /* Using a Pexels image of modern Nepal architecture */
+        background-size: cover;
+        background-position: center;
+        padding: 5rem 1.5rem;
+    }
+
+    .welcome-content { max-width: 800px; }
+    /* Changed color of "Attariya Technical College" to red */
+    .welcome-content h1 .text-en { color: var(--accent-red); }
+    .welcome-content .tagline .text-en { font-size: 1.5rem; margin-top: 1rem; }
+    .welcome-content .tagline .text-np { font-size: 1.2rem; }
+    .welcome-content .contact-details { margin: 1.5rem 0 2.5rem 0; font-size: 1.1rem; opacity: 0.9; }
+
+    .engagement-box {
+        background: rgba(45, 55, 72, 0.5);
+        backdrop-filter: blur(10px);
+        padding: 2.5rem;
+        border-radius: 15px;
+        max-width: 550px;
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .engagement-box h2 .text-en { color: var(--text-primary); font-size: 1.8rem; }
+    .engagement-box h2 .text-np { font-size: 1.5rem; color: var(--text-secondary);}
+    .engagement-box p { margin-bottom: 1.5rem; }
+    .input-field {
+        width: 100%; padding: 14px; border: 1px solid var(--text-secondary);
+        border-radius: 8px; font-family: inherit; font-size: 1rem; margin-bottom: 1rem;
+        background-color: var(--secondary-dark-bg);
+        color: var(--text-primary);
+    }
+
+    /* ========================================
+    SCREEN 2: CONGRATULATIONS & WHY
+    ========================================
+    */
+    #screen2-why { background-color: var(--secondary-dark-bg); }
+    /* Changed greeting color to red accent */
+    .personalized-greeting h1 .text-en { color: var(--accent-red); text-align:center; }
+    .personalized-greeting h1 .text-np { text-align:center; }
+    .section-subtitle.llm-subtitle {
+        max-width: 800px;
+    }
+
+    .info-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+    }
+    .info-card {
+        background: var(--primary-dark-bg);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: var(--shadow-light);
+        border-left: 5px solid;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .info-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-strong);
+    }
+    .info-card h3 { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .info-card svg { width: 40px; height: 40px; flex-shrink: 0; }
+
+    /* Changed border and svg color for card1 to red */
+    #card1 { border-color: var(--accent-red); } #card1 svg { color: var(--accent-red); }
+    #card2 { border-color: var(--accent-green); } #card2 svg { color: var(--accent-green); }
+    #card3 { border-color: var(--accent-magenta); } #card3 svg { color: var(--accent-magenta); }
+    #card4 { border-color: var(--accent-yellow); } #card4 svg { color: var(--accent-yellow); }
+
+
+    /* ========================================
+    SCREEN 3: SKILLS SHOWCASE - REVISED STRUCTURE
+    ========================================
+    */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+    .skill-card {
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        color: var(--text-primary);
+        box-shadow: var(--shadow-strong);
+        transition: transform 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary-dark-bg); /* Ensure background for text area */
+        padding-bottom: 1.5rem; /* Padding for the content below the image */
+    }
+    .skill-card:hover {
+        transform: scale(1.05);
+    }
+
+    .skill-image-wrapper {
+        width: 100%;
+        height: 200px; /* Fixed height for the image part */
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px 15px 0 0; /* Rounded top corners */
+        overflow: hidden;
+    }
+
+    /* Background images for skill cards - applied to new image wrapper */
+    #skill-autocad .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-costing .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-construction .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-management .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-highway .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/164555/pexels-photo-164555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-survey .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/7145025/pexels-photo-7145025.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-entrepreneurship .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+    #skill-loksewa .skill-image-wrapper { background-image: url(https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); }
+
+
+    .skill-text-content {
+        padding: 1.5rem; /* Padding for text content */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-grow: 1; /* Allows text content to take remaining space */
+    }
+    .skill-text-content h3 {
+        margin-bottom: 0.5rem;
+    }
+    .skill-text-content p {
+        color: var(--text-secondary); /* Nepali text will use this */
+    }
+    .skill-text-content .text-en {
+        color: var(--text-primary); /* English text will use this */
+    }
+
+
+    /* ========================================
+    SCREEN 4: WHY ATC & TESTIMONIAL
+    ========================================
+    */
+    #screen4-trust { background-color: var(--secondary-dark-bg); }
+    .testimonial {
+        background: var(--primary-dark-bg);
+        padding: 3rem;
+        border-radius: 15px;
+        max-width: 800px;
+        margin: 5rem auto 0 auto;
+        text-align: center;
+        box-shadow: var(--shadow-strong);
+        border-top: 8px solid var(--accent-green);
+    }
+    .testimonial img {
+        width: 100px; height: 100px;
+        border-radius: 50%; object-fit: cover;
+        border: 5px solid var(--primary-dark-bg);
+        margin-top: -80px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .testimonial-text {
+        font-size: 1.15rem;
+        font-style: italic;
+        color: var(--text-secondary);
+        margin: 1.5rem 0;
+    }
+    .testimonial-author .text-en { font-weight: 700; font-size: 1.2rem; }
+    .testimonial-author .text-np { font-weight: 700; font-size: 1.1rem; }
+    .testimonial-role { color: var(--text-secondary); }
+
+    /* ========================================
+    NEW SECTION: CAMPUS GALLERY
+    ========================================
+    */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: var(--shadow-light);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item img:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-strong);
+    }
+
+    /*
+    ========================================
+    NEW SECTION: FAQ
+    ========================================
+    */
+    #faq-section { background: var(--secondary-dark-bg); }
+    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+        background: var(--primary-dark-bg);
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        box-shadow: var(--shadow-light);
+        overflow: hidden;
+    }
+    .faq-question {
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .faq-question::after {
+        content: '+';
+        font-size: 2rem;
+        font-weight: 300;
+        /* Changed FAQ icon color to red */
+        color: var(--accent-red);
+        transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        padding: 0 1.5rem;
+    }
+    .faq-answer p { padding-bottom: 1.5rem; }
+
+    /* ========================================
+    NEW SECTION: LLM-Powered Project Ideas
+    ========================================
+    */
+    #project-ideas-section {
+        background-color: var(--primary-dark-bg);
+    }
+    .project-idea-box {
+        background: var(--secondary-dark-bg);
+        padding: 2.5rem;
+        border-radius: 15px;
+        max-width: 800px;
+        margin: 3.5rem auto 0 auto;
+        box-shadow: var(--shadow-strong);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+    .project-idea-box textarea {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid var(--text-secondary);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        background-color: var(--primary-dark-bg);
+        color: var(--text-primary);
+        resize: vertical;
+        min-height: 100px;
+    }
+    .project-idea-box .btn {
+        margin-top: 1rem;
+    }
+    #project-ideas-output {
+        margin-top: 2rem;
+        text-align: left;
+        background: var(--primary-dark-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 1px solid var(--text-secondary);
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        font-size: 1.1em;
+        line-height: 1.8;
+        white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    }
+    #project-ideas-output ul {
+        list-style: disc;
+        margin-left: 1.5rem;
+        width: 100%;
+    }
+    #project-ideas-output li {
+        margin-bottom: 0.8rem;
+    }
+
+    .loading-indicator {
+        display: none;
+        margin-top: 1rem;
+        color: var(--accent-red);
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .message-box {
+        display: none;
+        background-color: var(--accent-red);
+        color: white;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 600;
+    }
+    .message-box.show {
+        display: block;
+    }
+
+
+    /* ========================================
+    FINAL CTA SECTION
+    ========================================
+    */
+    #screen5-cta {
+        background: var(--secondary-dark-bg);
+        color: var(--text-primary);
+        text-align: center;
+    }
+    #screen5-cta .section-title .text-en,
+    #screen5-cta .section-title .text-np { color: var(--text-primary); }
+    #screen5-cta .section-subtitle .text-en,
+    #screen5-cta .section-subtitle .text-np { color: var(--text-secondary); }
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    .action-buttons .btn {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    /* Responsive Design */
+    @media(max-width: 768px) {
+        h1 .text-en { font-size: 2.5rem; }
+        h1 .text-np { font-size: 1.8rem; }
+        h2 .text-en { font-size: 2.2rem; }
+        h2 .text-np { font-size: 1.7rem; }
+        .container { padding: 4rem 1rem; }
+        .project-idea-box {
+            padding: 1.5rem;
+        }
+    }
+
+</style>
+</head>
+<body>
+    <main>
+
+    <section id="screen1-welcome">
+        <div class="welcome-content fade-in">
+            <h1>
+                <span class="text-en">Attariya Technical College</span>
+                <span class="text-np">ATC Future Builder</span>
+            </h1>
+            <p class="tagline">
+                <span class="text-en">Building Tomorrow's Nepal, Today.</span>
+                <span class="text-np">आजको प्रयास, भोलिको नेपाल निर्माण।</span>
+            </p>
+            <p class="contact-details">
+                📍 Attariya | अत्तरिया, कैलाली &nbsp;&nbsp; 📞 9847585346
+            </p>
+
+            <div class="engagement-box">
+                <h2>
+                    <span class="text-en">Ready to Engineer Your Future?</span>
+                    <span class="text-np">आफ्नो भविष्य निर्माण गर्न तयार हुनुहुन्छ?</span>
+                </h2>
+                <p>
+                    <span class="text-en">Let's get started. Tell us your name.</span>
+                    <span class="text-np">सुरु गरौं। आफ्नो नाम बताउनुहोस्।</span>
+                </p>
+                <form id="welcome-form">
+                    <input type="text" id="first-name" class="input-field" placeholder="Enter Full name" required>
+                    <a href="#screen2-why" id="explore-btn" class="btn btn-primary">
+                        <span class="text-en">Explore Your Future →</span>
+                        <span class="text-np" style="color:var(--primary-dark-bg); font-size: 0.8em;">आफ्नो भविष्य अन्वेषण गर्नुहोस् →</span>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen2-why" class="container">
+        <div class="personalized-greeting slide-up">
+            <h1>
+                <span class="text-en" id="greeting-en">Congratulations on passing your SEE! 🎉</span>
+                <span class="text-np" id="greeting-np">SEE उत्तीर्ण गर्नुभएकोमा बधाई छ! 🎉</span>
+            </h1>
+            <p class="section-subtitle">
+                <span class="text-en">A huge achievement deserves a future with huge possibilities. Let's explore why Civil Engineering is your best next step.</span>
+                <span class="text-np">यो ठूलो उपलब्धिको लागि, अब एक उत्कृष्ट भविष्यको सम्भावना खोजौं। सिभिल इन्जिनियरिङ तपाईंको लागि उत्तम अर्को कदम किन हो भनेर अन्वेषण गरौं।</span>
+            </p>
+        </div>
+
+        <div class="info-cards-grid">
+            <div class="info-card slide-up" id="card1">
+                <h3>
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 6V4h-4v2h4zM8 4V2H6v2h2zm10 2V4h-2v2h2zm0 4V8h-2v2h2zM8 8V6H6v2h2zm6 2V8h-4v2h4zM4 22v-8.42l4.5-1.5L12 14.4l3.5-2.32L20 13.58V22H4zm2-2h2v-5H6v5zm4 0h2v-3h-2v3zm4 0h2v-4h-2v4z"/></svg>
+                    <span>
+                        <span class="text-en">What is Civil Engineering?</span>
+                        <span class="text-np">सिभिल इन्जिनियरिङ के हो?</span>
+                    </span>
+                </h3>
+                <p>
+                    <span class="text-en">It's the art of building our world. From roads and bridges to the homes we live in. Civil Engineers are the practical visionaries who make modern life possible.</span>
+                    <span class="text-np">यो हाम्रो संसार निर्माण गर्ने कला हो। हामीले हिँड्ने सडक, पार गर्ने पुलदेखि लिएर बस्ने घरसम्म, सिभिल इन्जिनियरहरू नै आधुनिक जीवनलाई सम्भव बनाउने वास्तविक योजनाकार हुन्।</span>
+                </p>
+            </div>
+            <div class="info-card slide-up" id="card2" style="transition-delay: 100ms;">
+                <h3>
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.23 13.79L15 15.54l-1.6 2.76L12.23 13.79M11.33 2L2 12l9.33 10V2M12.67 2v20l9.33-10L12.67 2z"/></svg>
+                    <span>
+                        <span class="text-en">Top Job in Nepal</span>
+                        <span class="text-np">नेपालमा शीर्ष जागिर</span>
+                    </span>
+                </h3>
+                <p>
+                    <span class="text-en">Nepal is booming with development! There's high demand for sub-engineers in stable government roles and high-paying private companies. A secure, respected career.</span>
+                    <span class="text-np">नेपाल विकासको दौडमा छ! यहाँ स्थिर सरकारी र राम्रो तलब दिने निजी कम्पनीहरूमा दक्ष सब-इन्जिनियरहरूको ठूलो माग छ। यो एक सुरक्षित र सम्मानित करियर हो।</span>
+                </p>
+            </div>
+            <div class="info-card slide-up" id="card3" style="transition-delay: 200ms;">
+                <h3>
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 15H5.5v2H4v-2H2.5v-2H4V9.5h1.5V11H7v2m1-3h3.5v2H8v-2m14 .5c0 3.25-2.06 6-5.5 6S11 15.75 11 12.5 13.06 6.5 16.5 6.5 22 9.25 22 12.5M15 12h-2v-1h2v1m4 0h-2v-1h2v1z"/></svg>
+                    <span>
+                        <span class="text-en">Turn Skills into Income</span>
+                        <span class="text-np">सीपलाई आम्दानीमा बदल्नुहोस्</span>
+                    </span>
+                </h3>
+                <p>
+                    <span class="text-en">Gain job-ready skills from day one. Work as a Site Supervisor, CAD Designer, or Estimator. We even teach you how to start your own construction company.</span>
+                    <span class="text-np">पहिलो दिनदेखि नै जागिरको लागि तयार सीपहरू पाउनुहोस्। साइट सुपरभाइजर, CAD डिजाइनर, वा अनुमानकको रूपमा काम गर्नुहोस्। हामी तपाईंलाई आफ्नै निर्माण कम्पनी सुरु गर्न सिकाउँछौं।</span>
+                </p>
+            </div>
+            <div class="info-card slide-up" id="card4" style="transition-delay: 300ms;">
+                <h3>
+                     <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <span>
+                        <span class="text-en">The ATC Advantage</span>
+                        <span class="text-np">ATC को फाइदा</span>
+                    </span>
+                </h3>
+                <p>
+                    <span class="text-en">This course is your ultimate career hack! Gain Technical Mastery and Academic Equivalence to Class 12, opening doors to higher education and other jobs.</span>
+                    <span class="text-np">यो कोर्स तपाईंको करियरको लागि उत्तम विकल्प हो! प्राविधिक निपुणता र कक्षा १२ बराबरको शैक्षिक योग्यता पाउनुहोस्, जसले उच्च शिक्षा र अन्य जागिरहरूको ढोका खोल्छ।</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen3-skills" class="container">
+        <h2 class="section-title slide-up">
+            <span class="text-en">Your Toolkit for a High-Value Career</span>
+            <span class="text-np">एक मूल्यवान करियरको लागि तपाईंको टुलकिट</span>
+        </h2>
+        <p class="section-subtitle slide-up">
+            <span class="text-en">At ATC, you learn by doing. We equip you with the practical, in-demand skills that employers are searching for.</span>
+            <span class="text-np">ATC मा, तपाईंले काम गरेर सिक्नुहुन्छ। हामी तपाईंलाई रोजगारदाताहरूले खोज्ने व्यावहारिक र मागमा रहेका सीपहरूले सुसज्जित गर्छौं।</span>
+        </p>
+        <div class="skills-grid">
+            <!-- Skill Card: AutoCAD -->
+            <div class="skill-card slide-up" id="skill-autocad" style="transition-delay: 0ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">AutoCAD (CAD)</span><span class="text-np">अटोक्याड (CAD)</span></h3>
+                    <p>
+                        <span class="text-en">Master industry-standard software to draft precise 2D blueprints and 3D models.</span>
+                        <span class="text-np">सटीक 2D नक्सा र 3D मोडेलहरू बनाउन उद्योग-मानक सफ्टवेयरमा निपुण हुनुहोस्।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Skill Card: Estimating & Costing -->
+            <div class="skill-card slide-up" id="skill-costing" style="transition-delay: 100ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Estimating & Costing</span><span class="text-np">अनुमान र लागत</span></h3>
+                    <p>
+                        <span class="text-en">Learn the critical skill of calculating project costs, from materials to manpower.</span>
+                        <span class="text-np">परियोजनाको लागत, सामग्रीदेखि जनशक्तिसम्म, गणना गर्ने महत्वपूर्ण सीप सिक्नुहोस्।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Skill Card: Building & Construction Tech -->
+            <div class="skill-card slide-up" id="skill-construction" style="transition-delay: 200ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Building & Construction Tech</span><span class="text-np">भवन र निर्माण प्रविधि</span></h3>
+                    <p>
+                        <span class="text-en">Gain hands-on knowledge of modern construction methods, from foundation to finishing.</span>
+                        <span class="text-np">जगदेखि फिनिसिङसम्म, आधुनिक निर्माण विधिहरूको व्यावहारिक ज्ञान प्राप्त गर्नुहोस्।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Skill Card: Construction Management -->
+            <div class="skill-card slide-up" id="skill-management" style="transition-delay: 0ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Construction Management</span><span class="text-np">निर्माण व्यवस्थापन</span></h3>
+                    <p>
+                        <span class="text-en">Learn to lead a team, manage project timelines, and ensure quality control on a real site.</span>
+                        <span class="text-np">एक टोलीको नेतृत्व गर्न, परियोजनाको समयसीमा व्यवस्थापन गर्न, र वास्तविक साइटमा गुणस्तर नियन्त्रण सुनिश्चित गर्न सिक्नुहोस्।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Skill Card: Highway Engineering -->
+            <div class="skill-card slide-up" id="skill-highway" style="transition-delay: 100ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Highway Engineering</span><span class="text-np">राजमार्ग इन्जिनियरिङ</span></h3>
+                    <p>
+                        <span class="text-en">Learn to design, build, and maintain the roads that connect our nation.</span>
+                        <span class="text-np">हाम्रो राष्ट्रलाई जोड्ने सडकहरूको डिजाइन, निर्माण, र मर्मत गर्न सिक्नुहोस्।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Skill Card: Survey Camps & Tours -->
+            <div class="skill-card slide-up" id="skill-survey" style="transition-delay: 200ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Survey Camps & Tours</span><span class="text-np">सर्भेक्षण शिविर र भ्रमण</span></h3>
+                    <p>
+                        <span class="text-en">Apply your learning in the real world with our immersive survey camps and tours.</span>
+                        <span class="text-np">हाम्रो गहन सर्वेक्षण शिविरहरू र भ्रमणमार्फत आफ्नो सिकाइलाई वास्तविक संसारमा लागू गर्नुहोस्।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Skill Card: Entrepreneurship -->
+            <div class="skill-card slide-up" id="skill-entrepreneurship" style="transition-delay: 300ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Entrepreneurship</span><span class="text-np">उद्यमशीलता</span></h3>
+                    <p>
+                        <span class="text-en">We don't just teach you engineering; we teach you the business of engineering.</span>
+                        <span class="text-np">हामी तपाईंलाई इन्जिनियरिङ मात्र सिकाउँदैनौं; हामी तपाईंलाई इन्जिनियरिङको व्यवसाय सिकाउँछौं।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- NEW Skill Card: Loksewa Oriented -->
+            <div class="skill-card slide-up" id="skill-loksewa" style="transition-delay: 400ms;">
+                <div class="skill-image-wrapper"></div>
+                <div class="skill-text-content">
+                    <h3><span class="text-en">Loksewa Oriented</span><span class="text-np">लोकसेवा उन्मुख</span></h3>
+                    <p>
+                        <span class="text-en">Students will be able to know the exam pattern of Loksewa and will be able to practice in college and able to crack Loksewa in short time.</span>
+                        <span class="text-np">विद्यार्थीहरूले लोकसेवाको परीक्षा ढाँचा बुझ्नेछन्, कलेजमा अभ्यास गर्न सक्षम हुनेछन् र छोटो समयमै लोकसेवा क्र्याक गर्न सक्षम हुनेछन्।</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-ideas-section" class="container">
+        <h2 class="section-title slide-up">
+            <span class="text-en">✨ Inspire Your Future Projects ✨</span>
+            <span class="text-np">✨ आफ्नो भविष्यका परियोजनाहरूलाई प्रेरणा दिनुहोस् ✨</span>
+        </h2>
+        <p class="section-subtitle slide-up llm-subtitle">
+            <span class="text-en">Curious about what kind of impactful projects you could lead as a Civil Engineer in Nepal? Tell us a general area of interest, and let our AI suggest some innovative ideas!</span>
+            <span class="text-np">नेपालमा सिभिल इन्जिनियरको रूपमा तपाईंले कस्ता प्रभावकारी परियोजनाहरूको नेतृत्व गर्न सक्नुहुन्छ भन्ने बारे उत्सुक हुनुहुन्छ? हामीलाई रुचिको सामान्य क्षेत्र बताउनुहोस्, र हाम्रो AI लाई केही नवीन विचारहरू सुझाउन दिनुहोस्!</span>
+        </p>
+        <div class="project-idea-box slide-up">
+            <textarea id="project-topic-input" placeholder="e.g., sustainable infrastructure, rural development, earthquake-resistant buildings, smart cities"></textarea>
+            <button id="generate-ideas-btn" class="btn btn-primary">
+                <span class="text-en">Generate Project Ideas</span>
+                <span class="text-np" style="color:var(--primary-dark-bg); font-size: 0.8em;">परियोजनाका विचारहरू उत्पन्न गर्नुहोस्</span>
+            </button>
+            <div id="loading-indicator" class="loading-indicator">Generating ideas...</div>
+            <div id="message-box" class="message-box"></div>
+            <div id="project-ideas-output">
+                <p>Your innovative project ideas will appear here!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen4-trust" class="container">
+           <h2 class="section-title slide-up">
+             <span class="text-en">Your Success is Our Blueprint</span>
+             <span class="text-np">तपाईंको सफलता हाम्रो लक्ष्य हो</span>
+         </h2>
+        <div class="testimonial slide-up">
+            <img src="https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Ramesh Thapa">
+            <p class="testimonial-text">
+                <span class="text-en">"ATC is truly going o transform your career. The practical skills you will gain will be invaluable. You will be able to work confidently as a Sub-Engineer, contributing to Nepal's infrastructure. Thank you"</span>
+                <span class="text-np">"एटीसीले तपाईंको करियरलाई साँच्चै रूपान्तरण गर्नेछ। तपाईंले प्राप्त गर्ने व्यावहारिक सीपहरू अमूल्य हुनेछन्। तपाईं नेपालको पूर्वाधारमा योगदान पुर्‍याउँदै उप-इन्जिनियरको रूपमा आत्मविश्वासका साथ काम गर्न सक्षम हुनुहुनेछ। धन्यवाद।"</span>
+            </p>
+           
+        </div>
+    </section>
+
+    <section id="gallery-section" class="container">
+        <h2 class="section-title slide-up">
+            <span class="text-en">Life at ATC</span>
+            <span class="text-np">ATC मा जीवन</span>
+        </h2>
+        <p class="section-subtitle slide-up">
+            <span class="text-en">Explore our modern labs, collaborative classrooms, and vibrant campus life.</span>
+            <span class="text-np">हाम्रा आधुनिक प्रयोगशालाहरू, सहयोगी कक्षाकोठाहरू, र जीवन्त क्याम्पस जीवनको अन्वेषण गर्नुहोस्।</span>
+        </p>
+        <div class="gallery-grid">
+            <div class="gallery-item slide-up"><img src="https://images.pexels.com/photos/256517/pexels-photo-256517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="ATC Modern Lab"></div>
+            <div class="gallery-item slide-up" style="transition-delay: 100ms;"><img src="https://images.pexels.com/photos/7972718/pexels-photo-7972718.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="ATC Students Collaborating"></div>
+            <div class="gallery-item slide-up" style="transition-delay: 200ms;"><img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="ATC Library"></div>
+            <div class="gallery-item slide-up" style="transition-delay: 300ms;"></div>
+        </div>
+    </section>
+
+    <section id="faq-section" class="container">
+        <h2 class="section-title slide-up">
+            <span class="text-en">Frequently Asked Questions</span>
+            <span class="text-np">बारम्बार सोधिने प्रश्नहरू</span>
+        </h2>
+           <div class="faq-container">
+            <div class="faq-item slide-up">
+                <div class="faq-question">
+                    <h3><span class="text-en">What are the eligibility criteria?</span><span class="text-np">योग्यताका मापदण्डहरू के हुन्?</span></h3>
+                </div>
+                <div class="faq-answer"><p><span class="text-en">Students must have passed the SEE examination with a minimum GPA and specific grades in Science and Math. Please contact our counselor for detailed information.</span><span class="text-np">विद्यार्थीहरूले न्यूनतम GPA र विज्ञान तथा गणितमा निर्दिष्ट ग्रेड सहित SEE परीक्षा उत्तीर्ण गरेको हुनुपर्छ। विस्तृत जानकारीको लागि कृपया हाम्रो परामर्शदातालाई सम्पर्क गर्नुहोस्।</span></p></div>
+            </div>
+            <div class="faq-item slide-up">
+                <div class="faq-question">
+                    <h3><span class="text-en">Is this diploma equivalent to Class 12?</span><span class="text-np">के यो डिप्लोमा कक्षा १२ बराबर हो?</span></h3>
+                </div>
+                <div class="faq-answer"><p><span class="text-en">Yes, this Diploma in Engineering is recognized by Tribhuvan University and is equivalent to Class 12 (Science). This makes you eligible for bachelor's level studies in engineering and other fields.</span><span class="text-np">हो, यो डिप्लोमा इन इन्जिनियरिङ त्रिभुवन विश्वविद्यालयबाट मान्यता प्राप्त छ र कक्षा १२ (विज्ञान) बराबर हो। यसले तपाईंलाई इन्जिनियरिङ र अन्य क्षेत्रमा स्नातक तहको अध्ययनको लागि योग्य बनाउँछ।</span></p></div>
+            </div>
+               <div class="faq-item slide-up">
+                <div class="faq-question">
+                    <h3><span class="text-en">Are there hostel facilities available?</span><span class="text-np">के छात्रावासको सुविधा उपलब्ध छ?</span></h3>
+                </div>
+                <div class="faq-answer"><p><span class="text-en">Yes, we provide separate and secure hostel facilities for both male and female students, with all necessary amenities for a comfortable stay.</span><span class="text-np">हो, हामीले केटा र केटी दुवै विद्यार्थीका लागि छुट्टाछुट्टै र सुरक्षित छात्रावासको सुविधा प्रदान गर्दछौं, जसमा आरामदायी बसाइका लागि सबै आवश्यक सुविधाहरू छन्।</span></p></div>
+            </div>
+           </div>
+    </section>
+
+    <section id="screen5-cta">
+        <div class="container slide-up">
+            <h2 class="section-title">
+                <span class="text-en">Your Future Starts Now. Don't Wait.</span>
+                <span class="text-np">तपाईंको भविष्य अब सुरु हुन्छ। ढिला नगर्नुहोस्।</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="text-en">Admissions are open, but seats are limited. Take the first step towards a secure and rewarding career.</span>
+                <span class="text-np">भर्ना खुला छ, तर सिटहरू सीमित छन्। एक सुरक्षित र फलदायी करियरतर्फ पहिलो कदम चाल्नुहोस्।</span>
+            </p>
+            <div class="action-buttons">
+                <a href="#" class="btn btn-primary">
+                    <span class="text-en">APPLY ONLINE NOW</span>
+                    <span class="text-np" style="color:var(--primary-dark-bg); font-size: 0.8em;">अहिले अनलाइन आवेदन दिनुहोस्</span>
+                </a>
+                <a href="tel:9847585346" class="btn">
+                    <span class="text-en">📞 Click to Call: 9847585346</span>
+                    <span class="text-np" style="color:var(--text-secondary); font-size: 0.8em;">📞 कल गर्न क्लिक गर्नुहोस्: 9847585346</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Personalization ---
+        const welcomeForm = document.getElementById('welcome-form');
+        const firstNameInput = document.getElementById('first-name');
+        const greetingEn = document.getElementById('greeting-en');
+        const greetingNp = document.getElementById('greeting-np');
+
+        welcomeForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form submission
+        });
+
+        document.getElementById('explore-btn').addEventListener('click', () => {
+            const userName = firstNameInput.value.trim();
+            if (userName) {
+                greetingEn.textContent = `Congratulations ${userName}, on passing your SEE! 🎉`;
+                greetingNp.textContent = `बधाई छ ${userName}, SEE उत्तीर्ण गर्नुभएकोमा! 🎉`; // Fixed Nepali greeting to be grammatically correct for name insertion
+            }
+        });
+
+
+        // --- FAQ Accordion ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-item.active');
+                if (currentlyActive && currentlyActive !== item) {
+                    currentlyActive.classList.remove('active');
+                    currentlyActive.querySelector('.faq-answer').style.maxHeight = 0;
+                }
+
+                item.classList.toggle('active');
+                const answer = item.querySelector('.faq-answer');
+                if (item.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    answer.style.maxHeight = 0;
+                }
+            });
+        });
+
+        // --- Scroll Animation Observer ---
+        const faders = document.querySelectorAll('.fade-in, .slide-up');
+        const appearOptions = {
+            threshold: 0.2, // Adjust as needed, 0.2 means 20% of the element needs to be visible
+            rootMargin: "0px 0px -50px 0px" // Optional: grow or shrink the root margin
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(
+            entries,
+            appearOnScroll
+        ) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // --- LLM Integration: Project Idea Generator ---
+        const projectTopicInput = document.getElementById('project-topic-input');
+        const generateIdeasBtn = document.getElementById('generate-ideas-btn');
+        const projectIdeasOutput = document.getElementById('project-ideas-output');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const messageBox = document.getElementById('message-box');
+
+        generateIdeasBtn.addEventListener('click', async () => {
+            const topic = projectTopicInput.value.trim();
+            if (!topic) {
+                showMessage('Please enter an area of interest to generate ideas.', 'error');
+                return;
+            }
+
+            // Clear previous output and message
+            projectIdeasOutput.innerHTML = '';
+            hideMessage();
+            loadingIndicator.style.display = 'block';
+
+            try {
+                let chatHistory = [];
+                const prompt = `Generate 3-5 innovative civil engineering project ideas relevant to Nepal, focusing on "${topic}". For each idea, provide a brief description of its purpose and potential impact in Nepal. Format the response as a numbered list where each item starts with an asterisk (*) and includes the idea title and description.`;
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this in runtime.
+
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API error: ${response.status} ${response.statusText} - ${errorData.error.message}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    // Format the text into an unordered list for display
+                    const ideasHtml = text.split('* ').filter(item => item.trim() !== '').map(item => `<li>${item.trim()}</li>`).join('');
+                    projectIdeasOutput.innerHTML = `<ul>${ideasHtml}</ul>`;
+                } else {
+                    showMessage('Could not generate ideas. Please try a different topic.', 'warning');
+                    projectIdeasOutput.innerHTML = '<p>No ideas generated. Try a different topic.</p>';
+                }
+            } catch (error) {
+                console.error("Error generating project ideas:", error);
+                showMessage(`Failed to generate ideas. Error: ${error.message}. Please try again later.`, 'error');
+                projectIdeasOutput.innerHTML = '<p>Error generating ideas. Please try again.</p>';
+            } finally {
+                loadingIndicator.style.display = 'none';
+            }
+        });
+
+        // Function to show custom message box
+        function showMessage(message, type = 'info') {
+            messageBox.textContent = message;
+            messageBox.className = 'message-box show'; // Reset classes and show
+            if (type === 'error') {
+                messageBox.style.backgroundColor = 'var(--accent-red)';
+            } else if (type === 'warning') {
+                messageBox.style.backgroundColor = 'var(--accent-yellow)';
+            } else {
+                messageBox.style.backgroundColor = 'var(--accent-green)';
+            }
+        }
+
+        // Function to hide custom message box
+        function hideMessage() {
+            messageBox.classList.remove('show');
+            messageBox.textContent = '';
+        }
+    });
+</script>
+</body>
+</html>
+
